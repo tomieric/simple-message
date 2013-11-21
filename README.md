@@ -4,6 +4,9 @@ simple-message(简信)
 **基于nodejs和sokectio 在线聊天室**
 chat online(nodejs sokectIO)
 
+参考：http://js8.in/2011/09/29/%E5%9F%BA%E4%BA%8Eexpresssocket-io%E7%9A%84nodejs%E8%81%8A%E5%A4%A9%E5%AE%A4/
+本demo做了express3.x的升级版
+
 安装
 --------
 1. 命令提示符进入解压目录，输入npm install
