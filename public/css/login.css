@@ -1,0 +1,18 @@
+/*--- 登录页面 ---*/
+.login-home{ background: url(../images/bg03_home.png);}
+.login{ position: relative; padding-top: 4px; background: url(../images/home_main.png) no-repeat left bottom; height: 444px;}
+
+
+.login-wrap{ position: absolute; top: 40px; left: 50%; margin-left: -192px; padding: 50px; background: #fff; filter:alpha(opacity=95); background: rgba(255,255,255, 0.7); border-radius: 5px; box-shadow: 3px 3px 7px rgba(0,0,0,.3)}
+.login-wrap h3{ margin: 0 0 20px 0; padding-bottom: 5px; font-size: 21px; font-weight: normal; text-shadow: 1px 1px 1px #EEE; border-bottom: 1px solid #aeaeae; box-shadow: inset 0 -1px 0 #d2d2d2 }
+.input-wrap{ margin-top: 5px; width: 316px; background: #FFF; border-radius: 5px; border-bottom: 1px solid #FFF; box-shadow: inset 0 1px 3px rgba(170,170,170,.8)}
+.un-wrap{ border: 1px solid #aeaeae; padding: 3px; border-radius: 5px 5px 0 0 }
+.pwd-wrap{ border-style: solid; border-color: #aeaeae; border-width: 0 1px 1px 1px; border-radius: 0 0 5px 5px; }
+.login-text{ margin: 0; border: none; outline: none; width: 240px; padding: 11px 0; vertical-align: middle; }
+
+.icon-un, .icon-pwd{ display: inline-block; *display: inline; *zoom: 1; margin: 0 15px; vertical-align: middle; background: url(../images/icon24_login.png) no-repeat; width: 24px; height: 24px; }
+.icon-un{ background-position: 0 0; }
+.icon-pwd{ background-position: -48px 0; }
+
+.login-panel{ padding: 30px 0 10px; }
+.login-submit{ display: block; padding: 8px 0; border: 1px solid #638467; color: #FFF; width: 316px; text-align: center; background: #5BA10E; border-radius: 5px; font-size: 14px; background: -webkit-gradient(linear,left top,left bottom,from(#6FB420),to(#51930D)); background: -moz-linear-gradient(0% 0% 270deg, #6FB420,#51930D, #6FB420 100%); }

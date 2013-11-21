@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
+<!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>简信群聊</title>
+	<link rel="stylesheet" href="/css/normalize.css">
+	<link rel="stylesheet" href="/css/main.css">
+	<link rel="stylesheet" href="/css/base.css">
+	<link rel="stylesheet" href="/css/jquery.sinaEmotion.css">
+	<script src="/js/modernizr.min.js"></script>
+	<script src="/js/jquery.js"></script>
+	<script src="/js/util.js"></script>
+</head>
+<body class="login-home">
+	<div class="wrapper container">
+		<div class="header">
+			<h1 class="logo">简信群聊</h1>
+		</div>
+		<div class="content">
+			<div class="chat clearfix">
+				<div class="chat-main">
+					<div class="chat-main-inner">
+						<div class="box-title">
+							<div class="user">
+								<a href="javascript:;" title="<%= name %>"><img src="/images/head/<%= userHeadId %>.png" id="bigUserHead" /></a>
+							</div>
+							<div><b><%= name %></b></div>
+						</div>
+						<div class="chat-message">
+							<div class="chat-list" id="chat-list">
+								<div class="chat-list-i">
+									<div class="chat-list-user chat-list-guest">
+										<a href="javascript:;" title="系统"><img src="/images/head/system.png" /></a>
+									</div>
+									<div class="chat-list-text">
+										<span class="arrow">◆<i>◆</i></span>
+										<div class="chat-list-msg">
+											<p><b>系统</b><em><script> document.write(new Date().format('yyyy-MM-dd hh:mm:ss')); </script></em></p>
+											<p>努力加载中...</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="chat-form">
+								<div class="chat-tools clearfix">
+									<a href="javascript:;" class="face" id="face"></a>
+								</div>
+								<div class="chat-input-wrap"><textarea class="chat-input" id="message" contenteditable="true"></textarea></div>
+								<div class="button-wrap clearfix"><input type="button" id="btn" class="send-message" value="发送（Enter）" /></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="chat-aside">
+					<div class="box-title">
+						<div><i class="online-icon"></i>在线成员</div>
+					</div>
+					<div class="userList" id="userList">
+						<div class="line">
+							<a href="javascript:;">
+								<span class="user-post"><img src="/images/head/system.png"></span>
+								<span class="user-name">加载中...</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer">
+			<div class="footer-inner">
+				<div class="footer-line"></div>
+				<p class="contact"><i class="mail"></i><a href="mailto:tomieric@gmail.com">tomieric@gmail.com</a></p>
+				<p class="copyright">&copy; 2011-2013 fed@yiihuu.com All Rights Reserved. </p>
+			</div>
+		</div>
+	</div>
+
+	<script src="/js/jquery.sinaEmotion.js"></script>
+	<script>
+		var userName = '<%= name %>';
+
+		$(function(){
+			// 绑定表情
+			$('#face').SinaEmotion($('#message'));
+		});
+	</script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/js/index.js"></script>
+</body>
+</html>

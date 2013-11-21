@@ -1,0 +1,29 @@
+!!! 5
+	html(lang="zh-CN")
+	head
+		meta(charset='utf-8')
+		title 聊天室-js8.in
+		script(src='/js/jquery.js')
+		script(src='/socket.io/socket.io.js')
+		link(rel='stylesheet', type='text/css',href='/css/style.css')
+	body
+		#chatroom.room
+			#connecting
+				.wrap 正在连接到服务器...
+			#chat.clearfix
+				#messages
+					#lines.scrollbar
+						.line
+							.message-header
+								.message-from 系统消息
+								.message-timestamp 2013-05-32
+							.message-text 这个是消息内容
+				#online.clearfix
+					.title 在线成员列表
+					#nicknames.scrollbar
+			#send-message
+				input#message
+				button#btn 发送
+		script(type="text/javascript")
+			var userName = '#{name}';
+		script(src='/js/index.js')
