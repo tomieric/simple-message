@@ -9,14 +9,14 @@ var express = require('express'),
 	url = require('url'),
 	cookie = require('cookie');
 	connect  =  require('connect'),
-	parseCookie = connect.utils.parseSignedCookies,
+	parseCookie = require('cookie-parser'),
 	MemoryStore = connect.middleware.session.MemoryStore;
 	
 /*
 * 私人聊天使用session
 */
 var userWS = {},
-	userInfo = {},
+	userInfo = {};
 	storeMemory = new MemoryStore({
 		reapInterval: 60000 * 10
 	});
@@ -29,7 +29,7 @@ var server = http.createServer(app);
 // 配置
 app.configure(function(){
 	app.use(express.bodyParser());
-	app.use(express.cookieParser());
+	app.use(express.cookieParser('qqchat'));
 	app.use(express.session({
 		secret: 'qqchat',
 		store: storeMemory
@@ -47,14 +47,7 @@ app.configure(function(){
 var io = sio.listen(server);
 io.set('authorization', function(handshakeData, callback){
 	
-//	handshakeData.cookie = parseCookie(handshakeData.headers.cookie, 'qqchat');
-//console.log(handshakeData.cookie);	
-
-	handshakeData.cookie = parseCookie(cookie.parse(decodeURIComponent(handshakeData.headers.cookie)),'qqchat');
-	
-	//handshakeData.cookie = connect.utils.parseSignedCookie(decodeURIComponent(handshakeData.headers.cookie),'qqchat');
-	
-	//console.log(handshakeData.cookie);	
+	handshakeData.cookie = parseCookie.signedCookies(cookie.parse(decodeURIComponent(handshakeData.headers.cookie)),'qqchat');
 
 	var connect_sid = handshakeData.cookie['connect.sid'];
 
@@ -63,7 +56,8 @@ io.set('authorization', function(handshakeData, callback){
 			if(error){
 				callback(error.message, false);
 			}else{
-				handshakeData.session = session;
+				// socket.io 1.x 不支持这样赋值，更换会0.9.x
+			    handshakeData.session = session;
 				callback(null, true);
 			}
 		});
@@ -89,7 +83,6 @@ app.get('/', function(req, res){
 
 app.get('/chat', function(req, res){
 	if(req.session.name && req.session.name !==""){
-		//var userHeadId = parseInt(Math.random()*11);
 		res.render('chat', {name: req.session.name, userHeadId: req.session.userHeadId});
 	}else{
 		res.redirect('/');
@@ -101,7 +94,6 @@ app.post('/chat', function(req, res){
 	var userHeadId = parseInt(Math.random()*10) + 1;
 	if(name && name !== ""){
 		req.session.name = name;
-		//req.session.userHeadId = userHeadId;
 		userInfo[name] = { name: name, userHeadId: userHeadId};
 		res.render('chat', {name: name, userHeadId: userHeadId});
 	}else{
@@ -114,18 +106,9 @@ app.post('/chat', function(req, res){
 */
 io.sockets.on("connection", function(socket){
 	var session = socket.handshake.session;
-//console.log(socket.handshake.session.name);
-	//console.log(session);
 	if(!session) return;
 	var name = session.name;
-	//var userHeadId = session.userHeadId;
-	
-	//cache.name = socket;
-	//cache.userHeadId = userHeadId;
-	//userWS[name] = cache;
 	userWS[name] = socket;
-	//userWS[name]['userHeadId'] = userHeadId;
-//console.log(userInfo);	
 	var refresh_online = function(){
 		var n = [];
 		for(var i in userWS){
@@ -167,7 +150,7 @@ io.sockets.on("connection", function(socket){
 
 
 //启动服务
-server.listen(3000, function(){
+server.listen(4000, function(){
 	var addr = server.address();
 	console.log('app listening on http://127.0.0.1:' + addr.port);
 });
