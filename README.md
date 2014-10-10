@@ -15,3 +15,5 @@ chat online(nodejs sokectIO)
 4. 用不同的浏览器访问，可以看到聊天室可以实时在线聊天
 
 *支持FF,chorme,IE7+,.etc*
+
+![在线聊天室](http://getf2e.com/myproject/media/12.jpg)
