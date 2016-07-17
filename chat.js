@@ -150,7 +150,7 @@ io.sockets.on("connection", function(socket){
 
 
 //启动服务
-server.listen(4000, function(){
+server.listen(3000, function(){
 	var addr = server.address();
 	console.log('app listening on http://127.0.0.1:' + addr.port);
 });
